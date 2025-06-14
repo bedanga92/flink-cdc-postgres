@@ -1,0 +1,5 @@
+/flink-connector-jdbc-3.3.0-1.20.jar
+/flink-sql-connector-postgres-cdc-3.0.1.jar
+/postgresql-42.6.0.jar
+/.venv/
+/.idea/
