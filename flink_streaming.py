@@ -25,28 +25,26 @@ table_env.get_config().get_configuration().set_string(
 )
 
 postgres_sink = f"""
-CREATE TABLE shipments (
-   shipment_id INT,
-   order_id INT,
-   origin STRING,
-   destination STRING,
-   is_arrived BOOLEAN,
-   PRIMARY KEY (shipment_id) NOT ENFORCED
+CREATE TABLE test_data_e (
+    id BIGINT,
+    name STRING,
+    vals INT,
+   PRIMARY KEY (id) NOT ENFORCED
  ) WITH (
    'connector' = 'postgres-cdc',
    'hostname' = 'localhost',
    'port' = '5432',
-   'username' = 'postgres',
-   'password' = 'postgres',
+   'username' = 'paimon',
+   'password' = 'paimon123',
    'database-name' = 'postgres',
    'schema-name' = 'public',
     'slot.name' = 'sales',
     'decoding.plugin.name' = 'pgoutput',
-   'table-name' = 'shipments'
+   'table-name' = 'test_data_e'
  );
 """
 
 table_env.execute_sql(postgres_sink)
 
 
-table_env.execute_sql(f"SELECT * FROM shipments ").print()
+table_env.execute_sql(f"SELECT * FROM test_data_e ").print()
